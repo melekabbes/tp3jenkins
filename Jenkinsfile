@@ -14,15 +14,15 @@ pipeline {
 
         stage("Clone repo") {
             steps {
-                sh "git clone https://github.com/melekabbes/tp3jenkins.git"
+                bat "git clone https://github.com/melekabbes/tp3jenkins.git"
             }
         }
 
         stage("Generate backend image") {
             steps {
                 dir("tp3jenkins") {
-                    sh "mvn clean install"
-                    sh "docker build -t tp3jenkins ."
+                    bat "mvn clean install"
+                    bat "docker build -t tp3jenkins ."
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage("Run docker compose") {
             steps {
                 dir("tp3jenkins") {
-                    sh "docker-compose up -d"
+                    bat "docker-compose up -d"
                 }
             }
         }
